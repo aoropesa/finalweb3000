@@ -12,6 +12,9 @@ export let wolf = {
       }
     }, 1000);
   },
+  feed: function(){
+
+  },
   didYouGetEaten: function() {
     if (this.foodLevel > 0) {
       return false;
@@ -33,10 +36,64 @@ export let wolf = {
 // return [0, 1].
 // Try not to use a brute force approach... If you no idea what I'm talking about, disregard.
 
-// Challenge 3
-// Given two (dic­tio­nary) words as Strings, deter­mine if the following applies. Verify if the let­ters in one word can be remapped to get the sec­ond word. Remap­ping a let­ter means replac­ing all occur­rences of it with another let­ter while the order­ing of the let­ters remains unchanged. No two let­ters may map to the same let­ter, but a let­ter may map to itself. if the let­ters in one word can be remapped to get the sec­ond word. Remap­ping a let­ter means replac­ing all occur­rences of it with another let­ter while the order­ing of the let­ters remains unchanged. No two let­ters may map to the same let­ter, but a let­ter may map to itself.
+function twoNumber(arr, target){
+  var second;
+  for(let i=0;i<arr.length;i++){
+    second = target - arr[i];
+    if((arr.includes(second)==true) && (arr.indexOf(second)!=i)){
+      return [i, arr.indexOf(second)]
+    }
+ }
+return "Element not found"
+}
+twoNumber([2,7,11,15],9);
+
+// Challenge
+// Given two (dic­tio­nary) words as Strings, deter­mine if the following applies.
+ // Verify if the let­ters in one word can be remapped to get the sec­ond word. Remap­ping a
+ // let­ter means replac­ing all occur­rences of it with another let­ter while the order­ing of
+ // the let­ters remains unchanged. No two let­ters may map to the same let­ter, but a let­ter may
+ // map to itself. if the let­ters in one word can be remapped to get the sec­ond word. Remap­ping
+ //  a let­ter means replac­ing all occur­rences of it with another let­ter while the order­ing of the
+ //  let­ters remains unchanged. No two let­ters may map to the same let­ter, but a let­ter may map to itself.
 // Examples:
 //"foo", "app"; returns true
 //"bar", "foo"; returns false
 //"turtle", "tletur"; returns true
 //"ab", "ca"; returns true
+
+function Map(str1, str2){
+  var save = {};
+  if(str1.length === str2.length){
+    for(let i=0;i<str1.length;i++){
+      if(!save[str1[i]]){
+        save[str1[i]] = str2[i];
+      }
+       if(save[str1[i]] != str2[i]){
+         return false;
+      }
+    }
+    return true;
+  }
+  return 'false'
+}
+Map('foo','app');
+Map('bar','foo')
+
+function isomorphic(str1, str2){
+       if(str1.length !== str2.length) return false;
+       var map1={}, map2={};
+
+       for (var i=0; i< str1.length;i++) {
+           if (typeof map1[str1[i]] == "undefined" && typeof map2[str2[i]] == "undefined"){
+               map1[str1[i]] = str2[i];
+               map2[str2[i]] = str1[i];
+           }
+           else{
+               if(map1[str1[i]] !== str2[i] && map2[str2[i]] !== str1[i]){
+                   return false;
+               }
+           }
+       }
+       return true;
+   }
